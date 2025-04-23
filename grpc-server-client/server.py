@@ -1,4 +1,5 @@
 from concurrent import futures
+from time import sleep
 
 from typing import List
 
@@ -9,7 +10,7 @@ import employee_pb2_grpc
 
 class EmployeeGRPCServicer(employee_pb2_grpc.EmployeeGRPCServicer):
     def __init__(self):
-        self.employees: List[employee_pb2.Employees] = []
+        self.employees: List[employee_pb2.Employee] = []
         self.id = 1
 
     def addEmployee(self, request: employee_pb2.Employee, context):
@@ -18,10 +19,17 @@ class EmployeeGRPCServicer(employee_pb2_grpc.EmployeeGRPCServicer):
         self.employees.append(request)
         self.id += 1
 
+        print("Employee list -> ", self.employees)
+
         return request
 
     def getEmployees(self, request: employee_pb2.void, context):
-        return self.employees
+        return employee_pb2.Employees(employees=self.employees)
+
+    def getEmployeesStream(self, request, context):
+        for i in self.employees:
+            yield i
+            sleep(2)
 
 
 def run():
