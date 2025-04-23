@@ -3,8 +3,9 @@ syntax = "proto3";
 package EmployeeProto;
 
 service EmployeeGRPC{
-    rpc addEmployee(Employee) returns (Employee) {};
+    rpc addEmployee(Employee) returns (void) {};
     rpc getEmployees(void) returns (Employees) {};
+    rpc getEmployeesStream(void) returns (stream Employee) {};
 }
 
 message void {}

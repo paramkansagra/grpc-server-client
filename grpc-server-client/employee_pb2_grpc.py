@@ -37,12 +37,17 @@ class EmployeeGRPCStub(object):
         self.addEmployee = channel.unary_unary(
                 '/EmployeeProto.EmployeeGRPC/addEmployee',
                 request_serializer=employee__pb2.Employee.SerializeToString,
-                response_deserializer=employee__pb2.Employee.FromString,
+                response_deserializer=employee__pb2.void.FromString,
                 _registered_method=True)
         self.getEmployees = channel.unary_unary(
                 '/EmployeeProto.EmployeeGRPC/getEmployees',
                 request_serializer=employee__pb2.void.SerializeToString,
                 response_deserializer=employee__pb2.Employees.FromString,
+                _registered_method=True)
+        self.getEmployeesStream = channel.unary_stream(
+                '/EmployeeProto.EmployeeGRPC/getEmployeesStream',
+                request_serializer=employee__pb2.void.SerializeToString,
+                response_deserializer=employee__pb2.Employee.FromString,
                 _registered_method=True)
 
 
@@ -61,18 +66,29 @@ class EmployeeGRPCServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def getEmployeesStream(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_EmployeeGRPCServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'addEmployee': grpc.unary_unary_rpc_method_handler(
                     servicer.addEmployee,
                     request_deserializer=employee__pb2.Employee.FromString,
-                    response_serializer=employee__pb2.Employee.SerializeToString,
+                    response_serializer=employee__pb2.void.SerializeToString,
             ),
             'getEmployees': grpc.unary_unary_rpc_method_handler(
                     servicer.getEmployees,
                     request_deserializer=employee__pb2.void.FromString,
                     response_serializer=employee__pb2.Employees.SerializeToString,
+            ),
+            'getEmployeesStream': grpc.unary_stream_rpc_method_handler(
+                    servicer.getEmployeesStream,
+                    request_deserializer=employee__pb2.void.FromString,
+                    response_serializer=employee__pb2.Employee.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -101,7 +117,7 @@ class EmployeeGRPC(object):
             target,
             '/EmployeeProto.EmployeeGRPC/addEmployee',
             employee__pb2.Employee.SerializeToString,
-            employee__pb2.Employee.FromString,
+            employee__pb2.void.FromString,
             options,
             channel_credentials,
             insecure,
@@ -129,6 +145,33 @@ class EmployeeGRPC(object):
             '/EmployeeProto.EmployeeGRPC/getEmployees',
             employee__pb2.void.SerializeToString,
             employee__pb2.Employees.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def getEmployeesStream(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/EmployeeProto.EmployeeGRPC/getEmployeesStream',
+            employee__pb2.void.SerializeToString,
+            employee__pb2.Employee.FromString,
             options,
             channel_credentials,
             insecure,

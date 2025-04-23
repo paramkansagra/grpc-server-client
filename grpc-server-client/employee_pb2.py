@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x65mployee.proto\x12\rEmployeeProto\"\x06\n\x04void\"4\n\x08\x45mployee\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0e\n\x06salary\x18\x03 \x01(\x02\"7\n\tEmployees\x12*\n\temployees\x18\x01 \x03(\x0b\x32\x17.EmployeeProto.Employee2\x92\x01\n\x0c\x45mployeeGRPC\x12\x41\n\x0b\x61\x64\x64\x45mployee\x12\x17.EmployeeProto.Employee\x1a\x17.EmployeeProto.Employee\"\x00\x12?\n\x0cgetEmployees\x12\x13.EmployeeProto.void\x1a\x18.EmployeeProto.Employees\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x65mployee.proto\x12\rEmployeeProto\"\x06\n\x04void\"4\n\x08\x45mployee\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0e\n\x06salary\x18\x03 \x01(\x02\"7\n\tEmployees\x12*\n\temployees\x18\x01 \x03(\x0b\x32\x17.EmployeeProto.Employee2\xd6\x01\n\x0c\x45mployeeGRPC\x12=\n\x0b\x61\x64\x64\x45mployee\x12\x17.EmployeeProto.Employee\x1a\x13.EmployeeProto.void\"\x00\x12?\n\x0cgetEmployees\x12\x13.EmployeeProto.void\x1a\x18.EmployeeProto.Employees\"\x00\x12\x46\n\x12getEmployeesStream\x12\x13.EmployeeProto.void\x1a\x17.EmployeeProto.Employee\"\x00\x30\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -38,5 +38,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_EMPLOYEES']._serialized_start=95
   _globals['_EMPLOYEES']._serialized_end=150
   _globals['_EMPLOYEEGRPC']._serialized_start=153
-  _globals['_EMPLOYEEGRPC']._serialized_end=299
+  _globals['_EMPLOYEEGRPC']._serialized_end=367
 # @@protoc_insertion_point(module_scope)
